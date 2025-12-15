@@ -1,0 +1,31 @@
+version: '3.8'
+
+# Local development docker-compose file
+# This demonstrates volume mounting for storage persistence
+# For Dokploy, configure volumes in the Dokploy UI instead
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: toolsfree_local
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount storage directories to persist data
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+      # Mount entire app for development (optional - remove in production)
+      - ./:/var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    networks:
+      - toolsfree_network
+
+networks:
+  toolsfree_network:
+    driver: bridge
+
