@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4">
-        <h1 class="mb-2">Unit Converter</h1>
+        <h1 class="mb-2" style="color: #ffffff !important;">Unit Converter</h1>
         <p class="text-muted">
             Convert length, weight, volume and temperature units in a single, simple interface.
         </p>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <section class="mt-4">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Online unit converter for length, weight, volume and temperature</h2>
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Online unit converter for length, weight, volume and temperature</h2>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
             The <strong>online unit converter</strong> is ideal when you need to quickly switch between metric and imperial
             systems. Convert <strong>cm to inches</strong>, <strong>meters to feet</strong>, <strong>kilometers to miles</strong>
@@ -78,7 +78,7 @@
         </p>
         <div class="row mt-3">
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Popular conversions</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Popular conversions</h3>
                 <ul style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); padding-left: 1.1rem;">
                     <li>Front‑end layouts: convert <strong>pixels to centimeters</strong> when printing designs.</li>
                     <li>Fitness apps: show <strong>miles and kilometers</strong> or <strong>kg and lbs</strong> side‑by‑side.</li>
@@ -87,7 +87,7 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">How to get accurate results</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">How to get accurate results</h3>
                 <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
                     Enter a value, choose the source and target units, and click <strong>Convert</strong>. The
                     calculator normalizes everything internally (meters for length, kilograms for weight, liters for volume),

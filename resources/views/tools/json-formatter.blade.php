@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4">
-        <h1 class="mb-2">JSON Formatter &amp; Validator</h1>
+        <h1 class="mb-2" style="color: #ffffff !important;">JSON Formatter &amp; Validator</h1>
         <p class="text-muted">
             Paste your JSON below and use the buttons to beautify, minify, validate and copy the result.
         </p>
@@ -21,7 +21,7 @@
         <div id="json-error" class="json-error d-none"></div>
     </div>
     <section class="mb-4">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How to use this online JSON formatter</h2>
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #ffffff !important;">How to use this online JSON formatter</h2>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
             This <strong>online JSON formatter and validator</strong> is built for developers working with REST and JSON APIs.
             Paste any JSON response or request body into the editor, click <strong>Beautify</strong> to pretty‑print the data,
@@ -35,7 +35,7 @@
         </p>
         <div class="row mt-3">
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Common things you can do</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Common things you can do</h3>
                 <ul style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); padding-left: 1.1rem;">
                     <li>Reformat compact API responses into readable, indented JSON.</li>
                     <li>Minify configuration files before embedding them into HTML or JavaScript.</li>
@@ -44,7 +44,7 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Example: formatting an API response</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Example: formatting an API response</h3>
                 <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
                     Paste a payload such as:
                     <code>{"user":{"id":1,"name":"Alex","roles":["admin","editor"]}}</code>

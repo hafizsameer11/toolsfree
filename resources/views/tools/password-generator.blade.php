@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4">
-        <h1 class="mb-2">Random Password Generator &amp; Strength Tester</h1>
+        <h1 class="mb-2" style="color: #ffffff !important;">Random Password Generator &amp; Strength Tester</h1>
         <p class="text-muted">
             Generate strong passwords with custom length and character sets, then copy them with a single click.
         </p>
@@ -50,7 +50,7 @@
         </div>
     </div>
     <section class="mt-4">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Why use an online random password generator?</h2>
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Why use an online random password generator?</h2>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
             This <strong>random password generator</strong> helps you create long, unique credentials for your email, hosting,
             SaaS accounts and developer tools. By combining lowercase, uppercase, digits and optional symbols, it produces
@@ -65,7 +65,7 @@
         </p>
         <div class="row mt-3">
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Good practices for strong passwords</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Good practices for strong passwords</h3>
                 <ul style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); padding-left: 1.1rem;">
                     <li>Use a different generated password for every important account.</li>
                     <li>Prefer lengths of <strong>12–20 characters</strong> for public websites, and even longer for admin panels.</li>
@@ -74,7 +74,7 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">When to rely on a password manager</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">When to rely on a password manager</h3>
                 <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
                     This generator is perfect when you need a strong password right now, for example during a deployment or
                     while creating a new database user. For long‑term security, pair it with a password manager that remembers

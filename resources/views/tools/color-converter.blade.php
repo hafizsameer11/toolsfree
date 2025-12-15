@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4">
-        <h1 class="mb-2">HEX ↔ RGB Color Converter</h1>
+        <h1 class="mb-2" style="color: #ffffff !important;">HEX ↔ RGB Color Converter</h1>
         <p class="text-muted">
             Quickly convert HEX colors to RGB and back. Use the color picker to explore shades and copy clean codes.
         </p>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <section class="mt-4">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Online HEX to RGB converter for web designers</h2>
+        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Online HEX to RGB converter for web designers</h2>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
             This tool is a quick <strong>HEX to RGB converter</strong> and <strong>RGB to HEX converter</strong> for everyday
             UI and front‑end work. Paste a color like <code>#2563eb</code>, use the color picker to adjust the shade, and copy
@@ -48,7 +48,7 @@
         </p>
         <div class="row mt-3">
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Where HEX and RGB are used</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Where HEX and RGB are used</h3>
                 <ul style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); padding-left: 1.1rem;">
                     <li>Use HEX codes like <code>#111827</code> inside CSS, Tailwind config and design tokens.</li>
                     <li>Use RGB values such as <code>17, 24, 39</code> in design tools that support sliders.</li>
@@ -57,7 +57,7 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Tips for consistent color systems</h3>
+                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Tips for consistent color systems</h3>
                 <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
                     Pick a base color with the picker, then copy both the HEX and RGB values into your documentation.
                     Having both formats recorded prevents small mismatches when different people add styles to a project.

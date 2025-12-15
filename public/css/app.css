@@ -299,23 +299,67 @@ body.toolsfree-body::before {
    TEXT UTILITIES (Override Bootstrap)
    ============================================ */
 
+/* Force all headings to be white */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+body.toolsfree-body h1,
+body.toolsfree-body h2,
+body.toolsfree-body h3,
+body.toolsfree-body h4,
+body.toolsfree-body h5,
+body.toolsfree-body h6,
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Force all labels to be white */
+label,
+.form-label,
+.form-check-label,
+body.toolsfree-body label,
+body.toolsfree-body .form-label,
+body.toolsfree-body .form-check-label {
     color: #ffffff !important;
 }
 
+/* Paragraphs and text */
 p,
 li,
-span {
-    color: var(--text-secondary);
+span,
+body.toolsfree-body p,
+body.toolsfree-body li,
+body.toolsfree-body span {
+    color: var(--text-secondary) !important;
 }
 
-.text-muted {
+.text-muted,
+body.toolsfree-body .text-muted {
     color: var(--text-light) !important;
+}
+
+/* Strong and bold text */
+strong,
+b,
+body.toolsfree-body strong,
+body.toolsfree-body b {
+    color: #ffffff !important;
+    font-weight: 600;
 }
 
 code {
@@ -323,6 +367,16 @@ code {
     color: #e2e8f0;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
+}
+
+/* Bootstrap text utilities override */
+.text-dark,
+.text-black {
+    color: #ffffff !important;
+}
+
+.text-body {
+    color: var(--text-secondary) !important;
 }
 
 /* ============================================
