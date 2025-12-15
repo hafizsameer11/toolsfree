@@ -42,29 +42,46 @@ MAIL_FROM_ADDRESS=noreply@yourdomain.com
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 
-### 2. Configure Persistent Volumes
+### 2. Configure Persistent Volumes in Dokploy
 
-**IMPORTANT**: To persist storage data (uploads, logs, cache, sessions), you must configure volumes in Dokploy:
+**IMPORTANT**: Dokploy supports native volume mounting. Configure these volumes to persist your storage data:
 
-1. In Dokploy's deployment settings, go to **Volumes** section
-2. Add the following volume mounts:
+#### Volume Mount Configuration
 
-| Container Path | Volume Name | Description |
-|---------------|-------------|-------------|
+In Dokploy's deployment settings, add these two volume mounts:
+
+| Container Path | Volume Name/Path | Description |
+|---------------|------------------|-------------|
 | `/var/www/html/storage` | `toolsfree-storage` | Laravel storage (uploads, logs, cache, sessions) |
 | `/var/www/html/bootstrap/cache` | `toolsfree-bootstrap-cache` | Compiled views and config cache |
 
-**Volume Configuration in Dokploy UI:**
-- Click on your application/deployment
-- Go to **Volumes** or **Storage** tab
-- Add volume mounts:
-  - **Host Path/Volume**: `toolsfree-storage` (or use a named volume)
-  - **Container Path**: `/var/www/html/storage`
-  - **Mode**: `rw` (read-write)
-  
-  - **Host Path/Volume**: `toolsfree-bootstrap-cache` (or use a named volume)
-  - **Container Path**: `/var/www/html/bootstrap/cache`
-  - **Mode**: `rw` (read-write)
+#### Steps to Add Volumes in Dokploy:
+
+1. **Navigate to Your Application**
+   - Open your application in Dokploy dashboard
+   - Go to **Settings** or **Configuration**
+
+2. **Add Volume Mounts**
+   - Find **"Volumes"** or **"Mounts"** section
+   - Click **"Add Volume"** or **"Add Mount"**
+   
+3. **Configure First Volume (Storage)**
+   - **Volume Name**: `toolsfree-storage` (or any name)
+   - **Mount Path**: `/var/www/html/storage`
+   - **Type**: Named Volume (recommended) or Host Path
+   - **Mode**: `rw` (read-write)
+   
+4. **Configure Second Volume (Bootstrap Cache)**
+   - **Volume Name**: `toolsfree-bootstrap-cache` (or any name)
+   - **Mount Path**: `/var/www/html/bootstrap/cache`
+   - **Type**: Named Volume (recommended) or Host Path
+   - **Mode**: `rw` (read-write)
+
+5. **Save and Redeploy**
+   - Save the volume configuration
+   - Redeploy your application for changes to take effect
+
+**Note**: The entrypoint script automatically handles permissions when volumes are mounted, so you don't need to manually set permissions.
 
 ### 3. Deploy on Dokploy
 
