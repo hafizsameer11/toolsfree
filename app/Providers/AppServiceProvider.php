@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS URLs in production (important for Dokploy/nginx reverse proxy)
+        if (config('app.env') === 'production' || request()->header('X-Forwarded-Proto') === 'https') {
+            URL::forceScheme('https');
+        }
+
         // Share default meta data with all views (can be overridden per-page)
         View::share('meta', [
             'title' => 'ToolsFree.org - Free Online Developer & Productivity Tools',
