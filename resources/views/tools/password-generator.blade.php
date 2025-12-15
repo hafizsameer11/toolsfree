@@ -87,60 +87,89 @@
 
 @section('scripts')
 <script>
-    function measureStrength(pw) {
-        let score = 0;
-        if (!pw) return 0;
-        if (pw.length >= 8) score++;
-        if (pw.length >= 12) score++;
-        if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
-        if (/\d/.test(pw)) score++;
-        if (/[^A-Za-z0-9]/.test(pw)) score++;
-        return score;
-    }
-
-    function strengthLabel(score) {
-        if (score <= 1) return 'Very weak';
-        if (score === 2) return 'Weak';
-        if (score === 3) return 'Medium';
-        if (score === 4) return 'Strong';
-        return 'Very strong';
-    }
-
-    function generatePassword() {
-        const length = Math.max(6, Math.min(64, parseInt(document.getElementById('pw-length').value || '16', 10)));
-        const sets = [];
-        if (document.getElementById('pw-lower').checked) sets.push('abcdefghijklmnopqrstuvwxyz');
-        if (document.getElementById('pw-upper').checked) sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        if (document.getElementById('pw-digits').checked) sets.push('0123456789');
-        if (document.getElementById('pw-symbols').checked) sets.push('!@#$%^&*()-_=+[]{};:,.<>?');
-        if (!sets.length) sets.push('abcdefghijklmnopqrstuvwxyz');
-
-        const all = sets.join('');
-        let pw = '';
-        for (let i = 0; i < length; i++) {
-            pw += all.charAt(Math.floor(Math.random() * all.length));
+    (function() {
+        'use strict';
+        
+        function measureStrength(pw) {
+            let score = 0;
+            if (!pw) return 0;
+            if (pw.length >= 8) score++;
+            if (pw.length >= 12) score++;
+            if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
+            if (/\d/.test(pw)) score++;
+            if (/[^A-Za-z0-9]/.test(pw)) score++;
+            return score;
         }
-        return pw;
-    }
 
-    const output = document.getElementById('pw-output');
-    const strength = document.getElementById('pw-strength');
-
-    document.getElementById('pw-generate').addEventListener('click', () => {
-        const pw = generatePassword();
-        output.value = pw;
-        const score = measureStrength(pw);
-        strength.textContent = 'Strength: ' + strengthLabel(score);
-    });
-
-    document.getElementById('pw-copy').addEventListener('click', async () => {
-        try {
-            await navigator.clipboard.writeText(output.value);
-            strength.textContent = 'Copied to clipboard. ' + strength.textContent;
-        } catch (e) {
-            // ignore
+        function strengthLabel(score) {
+            if (score <= 1) return 'Very weak';
+            if (score === 2) return 'Weak';
+            if (score === 3) return 'Medium';
+            if (score === 4) return 'Strong';
+            return 'Very strong';
         }
-    });
+
+        function generatePassword() {
+            const lengthInput = document.getElementById('pw-length');
+            const length = Math.max(6, Math.min(64, parseInt(lengthInput ? lengthInput.value : '16', 10)));
+            const sets = [];
+            
+            const lowerCheck = document.getElementById('pw-lower');
+            const upperCheck = document.getElementById('pw-upper');
+            const digitsCheck = document.getElementById('pw-digits');
+            const symbolsCheck = document.getElementById('pw-symbols');
+            
+            if (lowerCheck && lowerCheck.checked) sets.push('abcdefghijklmnopqrstuvwxyz');
+            if (upperCheck && upperCheck.checked) sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+            if (digitsCheck && digitsCheck.checked) sets.push('0123456789');
+            if (symbolsCheck && symbolsCheck.checked) sets.push('!@#$%^&*()-_=+[]{};:,.<>?');
+            
+            if (!sets.length) sets.push('abcdefghijklmnopqrstuvwxyz');
+
+            const all = sets.join('');
+            let pw = '';
+            for (let i = 0; i < length; i++) {
+                pw += all.charAt(Math.floor(Math.random() * all.length));
+            }
+            return pw;
+        }
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const output = document.getElementById('pw-output');
+            const strength = document.getElementById('pw-strength');
+            const generateBtn = document.getElementById('pw-generate');
+            const copyBtn = document.getElementById('pw-copy');
+
+            if (generateBtn) {
+                generateBtn.addEventListener('click', function() {
+                    const pw = generatePassword();
+                    if (output) output.value = pw;
+                    const score = measureStrength(pw);
+                    if (strength) strength.textContent = 'Strength: ' + strengthLabel(score);
+                });
+            }
+
+            if (copyBtn && output) {
+                copyBtn.addEventListener('click', async function() {
+                    if (!output.value) return;
+                    try {
+                        await navigator.clipboard.writeText(output.value);
+                        if (strength) {
+                            strength.textContent = 'Copied to clipboard. ' + strength.textContent;
+                        }
+                    } catch (e) {
+                        // Fallback for older browsers
+                        output.select();
+                        document.execCommand('copy');
+                        if (strength) {
+                            strength.textContent = 'Copied to clipboard. ' + strength.textContent;
+                        }
+                    }
+                });
+            }
+        });
+    })();
 </script>
 @endsection
 
