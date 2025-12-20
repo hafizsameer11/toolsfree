@@ -18,6 +18,21 @@
 
         {{-- Custom styles for ToolsFree --}}
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0J62CHK4B"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z0J62CHK4B');
+</script>
+
+<!-- Google AdSense -->
+<script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5469615150170716"
+    crossorigin="anonymous">
+</script>
+
+<meta name="google-adsense-account" content="ca-pub-5469615150170716">
     </head>
     <body class="toolsfree-body">
         <header class="toolsfree-header">
