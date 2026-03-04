@@ -30,12 +30,10 @@
         gtag('config', 'G-Z0J62CHK4B');
     </script>
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5469615150170716"
-        crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-9439477079631908">
 
-    <meta name="google-adsense-account" content="ca-pub-5469615150170716">
-</head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9439477079631908"
+        crossorigin="anonymous"></script></head>
 
 <body class="toolsfree-body">
     <header class="toolsfree-header">
