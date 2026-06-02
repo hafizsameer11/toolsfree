@@ -20,6 +20,7 @@ class AdminSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@toolsfree.org',
                 'password' => Hash::make('Admin@123'),
+                'is_admin' => true,
                 'email_verified_at' => now(),
             ]
         );
