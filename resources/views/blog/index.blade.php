@@ -31,9 +31,19 @@
         <div class="blog-list">
             @foreach($posts as $post)
                 <article class="blog-card">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 250px;">
-                            <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem;">
+                    <div class="row g-4 align-items-start">
+                        @if($post->featured_image)
+                            <div class="col-md-4">
+                                <a href="{{ route('blog.show', $post->slug) }}">
+                                    <img src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}"
+                                         class="img-fluid rounded" style="width: 100%; height: 180px; object-fit: cover;">
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                        @else
+                            <div class="col-12">
+                        @endif
+                            <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: #ffffff !important;">
                                 <a href="{{ route('blog.show', $post->slug) }}" class="tool-link" style="text-decoration: none;">
                                     {{ $post->title }}
                                 </a>

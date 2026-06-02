@@ -44,6 +44,17 @@ class PageController extends Controller
 
         return view('pages.privacy', compact('meta'));
     }
+
+    public function terms()
+    {
+        $meta = [
+            'title' => 'Terms and Conditions - ToolsFree.org',
+            'description' => 'Read the terms and conditions for using ToolsFree.org free online developer tools and blog content.',
+            'keywords' => 'toolsfree terms,terms and conditions,toolsfree.org legal',
+        ];
+
+        return view('pages.terms', compact('meta'));
+    }
 }
 
 

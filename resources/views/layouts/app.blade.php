@@ -76,8 +76,9 @@
         <div class="container footer-inner">
             <p>&copy; {{ date('Y') }} ToolsFree.org. All rights reserved.</p>
             <div class="footer-links">
+                <a href="{{ route('about') }}">About Us</a>
                 <a href="{{ route('privacy') }}">Privacy Policy</a>
-                <a href="{{ route('about') }}">About</a>
+                <a href="{{ route('terms') }}">Terms &amp; Conditions</a>
                 <a href="{{ route('blog.index') }}">Blog</a>
             </div>
         </div>

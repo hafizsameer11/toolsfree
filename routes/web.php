@@ -28,6 +28,7 @@ Route::get('/login', function () {
 // Static pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/terms-and-conditions', [PageController::class, 'terms'])->name('terms');
 
 // Public tools
 Route::get('/json-formatter', [ToolController::class, 'jsonFormatter'])->name('tools.json');

@@ -32,8 +32,14 @@
             </div>
         @endif
 
-        <div style="font-size: 1.05rem; color: var(--text-primary); line-height: 1.8;">
-            {!! nl2br(e($post->body)) !!}
+        @if($post->featured_image)
+            <figure class="blog-featured-image mb-4">
+                <img src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}" class="img-fluid rounded" style="width: 100%; max-height: 420px; object-fit: cover;">
+            </figure>
+        @endif
+
+        <div class="blog-body-content">
+            {!! $post->body !!}
         </div>
     </article>
 

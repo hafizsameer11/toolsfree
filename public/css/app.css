@@ -380,6 +380,66 @@ code {
 }
 
 /* ============================================
+   BLOG ARTICLE CONTENT
+   ============================================ */
+
+.blog-body-content {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-secondary) !important;
+}
+
+.blog-body-content h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: #ffffff !important;
+}
+
+.blog-body-content h3 {
+    font-size: 1.15rem;
+    margin: 1.5rem 0 0.75rem;
+    color: #ffffff !important;
+}
+
+.blog-body-content p {
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary) !important;
+}
+
+.blog-body-content ul,
+.blog-body-content ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    color: var(--text-secondary) !important;
+}
+
+.blog-body-content li {
+    margin-bottom: 0.5rem;
+}
+
+.blog-body-content a {
+    color: #818cf8;
+    text-decoration: underline;
+}
+
+.blog-body-content a:hover {
+    color: #a5b4fc;
+}
+
+.blog-inline-figure,
+.blog-featured-image {
+    margin: 1.5rem 0;
+}
+
+.blog-inline-image,
+.blog-featured-image img {
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 
