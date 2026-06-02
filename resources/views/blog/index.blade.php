@@ -67,8 +67,8 @@
 
         {{-- Pagination --}}
         @if($posts->hasPages())
-            <div class="card" style="margin-top: 2rem;">
-                {{ $posts->links() }}
+            <div class="card blog-pagination-wrap">
+                {{ $posts->links('vendor.pagination.toolsfree') }}
             </div>
         @endif
 

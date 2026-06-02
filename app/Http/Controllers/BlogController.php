@@ -11,7 +11,7 @@ class BlogController extends Controller
     {
         $posts = Post::published()
             ->latest('published_at')
-            ->paginate(10);
+            ->paginate(3);
 
         $meta = [
             'title' => 'Developer Tips & API Guides Blog - ToolsFree.org',
