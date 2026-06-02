@@ -12,11 +12,14 @@ class BlogPostSeeder extends Seeder
         $posts = $this->articles();
 
         foreach ($posts as $data) {
+            $daysAgo = $data['days_ago'] ?? 1;
+            unset($data['days_ago']);
+
             Post::updateOrCreate(
                 ['slug' => $data['slug']],
                 array_merge($data, [
                     'is_published' => true,
-                    'published_at' => $data['published_at'] ?? now()->subDays($data['days_ago'] ?? 1),
+                    'published_at' => $data['published_at'] ?? now()->subDays($daysAgo),
                 ])
             );
         }
