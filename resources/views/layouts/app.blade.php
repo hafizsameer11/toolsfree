@@ -17,8 +17,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    {{-- Custom styles for ToolsFree --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- Custom styles for ToolsFree (v= bump after CSS changes) --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=3">
+    @stack('styles')
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0J62CHK4B"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
