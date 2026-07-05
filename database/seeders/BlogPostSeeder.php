@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -13,30 +14,55 @@ class BlogPostSeeder extends Seeder
         $path = database_path('seeders/data/blog_articles.json');
 
         if (! File::exists($path)) {
-            $this->command->error('blog_articles.json not found.');
+            $this->command->warn('blog_articles.json not found — add content to database/seeders/data/ and run: php artisan db:seed --class=BlogPostSeeder');
 
             return;
         }
 
         $articles = json_decode(File::get($path), true);
-        $slugs = array_column($articles, 'slug');
 
-        // Remove old seeded articles not in the new pack
+        if (empty($articles)) {
+            $this->command->warn('blog_articles.json is empty — nothing to seed.');
+
+            return;
+        }
+
+        $slugs = array_column($articles, 'slug');
         Post::whereNotIn('slug', $slugs)->delete();
 
         foreach ($articles as $data) {
-            $daysAgo = $data['days_ago'] ?? 1;
-            unset($data['days_ago']);
+            if (! empty($data['body_file'])) {
+                $bodyPath = database_path('seeders/data/articles/'.$data['body_file']);
+                if (File::exists($bodyPath)) {
+                    $data['body'] = File::get($bodyPath);
+                } else {
+                    $this->command->warn("Missing body file: {$data['body_file']}");
+
+                    continue;
+                }
+                unset($data['body_file']);
+            }
+
+            unset($data['image_title'], $data['image_subtitle'], $data['image_icon']);
+
+            $publishedAt = null;
+            if (! empty($data['published_date'])) {
+                $publishedAt = Carbon::parse($data['published_date'])->startOfDay();
+                unset($data['published_date']);
+            } elseif (isset($data['days_ago'])) {
+                $publishedAt = now()->subDays($data['days_ago']);
+                unset($data['days_ago']);
+            }
 
             Post::updateOrCreate(
                 ['slug' => $data['slug']],
                 array_merge($data, [
                     'is_published' => true,
-                    'published_at' => now()->subDays($daysAgo),
+                    'published_at' => $publishedAt ?? now(),
                 ])
             );
         }
 
-        $this->command->info('✓ Seeded ' . count($articles) . ' blog articles from docx pack.');
+        $this->command->info('Seeded '.count($articles).' blog articles.');
     }
 }

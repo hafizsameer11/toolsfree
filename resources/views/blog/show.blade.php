@@ -76,6 +76,10 @@
             <div class="blog-cta-actions" style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;">
                 <a href="{{ route('tools.json') }}" class="button-primary">JSON Formatter</a>
                 <a href="{{ route('tools.url') }}" class="button-primary">URL Encoder</a>
+                <a href="{{ route('tools.wordcount') }}" class="button-primary">Word Counter</a>
+                <a href="{{ route('tools.qr') }}" class="button-primary">QR Code</a>
+                <a href="{{ route('tools.jwt') }}" class="button-primary">JWT Decoder</a>
+                <a href="{{ route('tools.uuid') }}" class="button-primary">UUID Generator</a>
                 <a href="{{ route('tools.color') }}" class="button-primary">Colors</a>
                 <a href="{{ route('tools.password') }}" class="button-primary">Passwords</a>
             </div>

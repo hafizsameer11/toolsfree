@@ -1,94 +1,111 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mb-4">
-        <h1 class="mb-2" style="color: #ffffff !important;">URL Encoder / Decoder</h1>
-        <p class="text-muted">
-            Convert plain text or URLs to percent-encoded form and decode them back. Great for query strings and redirects.
-        </p>
+    <div class="tool-page-header mb-4">
+        <div class="tool-page-icon">🔗</div>
+        <div>
+            <h1 class="tool-page-title">URL Encoder / Decoder</h1>
+            <p class="tool-page-subtitle">Encode and decode URLs, query strings, and URI components safely.</p>
+        </div>
     </div>
 
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="card h-100">
-                <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Input</h2>
-                <textarea id="url-input" class="tool-textarea" placeholder="https://example.com?q=hello world"></textarea>
-                <div class="tool-actions">
-                    <button class="btn btn-primary btn-sm" id="url-encode">Encode</button>
-                    <button class="btn btn-outline-secondary btn-sm" id="url-decode">Decode</button>
-                    <button class="btn btn-outline-secondary btn-sm" id="url-copy">Copy result</button>
-                    <span class="chip">Client-side only</span>
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card tool-panel h-100">
+                <h2 class="tool-panel-title">Input</h2>
+                <textarea id="url-input" class="tool-textarea" placeholder="https://example.com/search?q=hello world&lang=en"></textarea>
+                <div class="tool-toolbar mt-3">
+                    <div class="tool-toolbar-group">
+                        <select id="url-mode" class="form-select form-select-sm tool-select">
+                            <option value="component">Encode component (encodeURIComponent)</option>
+                            <option value="uri">Encode full URI (encodeURI)</option>
+                            <option value="decode">Decode (decodeURIComponent)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tool-toolbar mt-2">
+                    <div class="tool-toolbar-group">
+                        <button class="btn btn-primary btn-sm tool-btn" id="url-run">▶ Run</button>
+                        <button class="btn btn-outline-secondary btn-sm tool-btn" id="url-swap">⇄ Swap</button>
+                        <button class="btn btn-outline-secondary btn-sm tool-btn" id="url-clear">🗑 Clear</button>
+                    </div>
+                    <span class="tool-badge">🔒 Client-side only</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card h-100">
-                <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Result</h2>
-                <textarea id="url-output" class="tool-textarea" readonly></textarea>
+        <div class="col-lg-6">
+            <div class="card tool-panel h-100">
+                <h2 class="tool-panel-title">Result</h2>
+                <textarea id="url-output" class="tool-textarea" readonly placeholder="Encoded or decoded result appears here…"></textarea>
+                <div class="tool-toolbar mt-3">
+                    <button class="btn btn-outline-secondary btn-sm tool-btn" id="url-copy">📋 Copy result</button>
+                    <span id="url-status" class="tool-inline-status"></span>
+                </div>
             </div>
         </div>
     </div>
-    <section class="mt-4">
-        <h2 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #ffffff !important;">Why use a URL encoder and decoder?</h2>
-        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
-            The <strong>URL encoder</strong> converts unsafe characters such as spaces, ampersands and question marks into a
-            safe, percent‑encoded format that browsers and servers understand. Use it when you build <strong>UTM tracking
-            links</strong>, sign OAuth redirect URIs or include user‑generated text in a query string. The <strong>URL decoder</strong>
-            reverses the process so you can quickly read and debug existing encoded URLs.
-        </p>
-        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
-            This simple <strong>online URL encoder / decoder</strong> runs entirely in your browser and does not log the links
-            you paste into the text area. You can keep the tool open while working on marketing campaigns, webhook endpoints
-            or API clients and copy the encoded result directly into your code, email or analytics platform.
-        </p>
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Typical use‑cases</h3>
-                <ul style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); padding-left: 1.1rem;">
-                    <li>Create campaign URLs with <code>utm_source</code> and <code>utm_medium</code> parameters.</li>
-                    <li>Encode callback URLs when integrating OAuth or SSO providers.</li>
-                    <li>Debug 400‑errors caused by malformed query strings in APIs.</li>
-                    <li>Clean up links before sharing them in email newsletters or chat apps.</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: #ffffff !important;">Best practices for encoded URLs</h3>
-                <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9);">
-                    When you generate links for users, always encode dynamic parts such as search terms or IDs.
-                    This prevents broken URLs and protects against accidental injection of reserved characters.
-                    With this encoder you can visually confirm that the encoded version still represents the
-                    original text before shipping it to production.
-                </p>
-            </div>
-        </div>
-    </section>
+
+    @include('tools.content.url-encoder')
 @endsection
 
 @section('scripts')
 <script>
+(function() {
     const input = document.getElementById('url-input');
     const output = document.getElementById('url-output');
+    const mode = document.getElementById('url-mode');
+    const status = document.getElementById('url-status');
 
-    document.getElementById('url-encode').addEventListener('click', () => {
-        output.value = encodeURIComponent(input.value);
+    function run() {
+        const text = input.value;
+        if (!text) { output.value = ''; return; }
+        try {
+            switch (mode.value) {
+                case 'component':
+                    output.value = encodeURIComponent(text);
+                    break;
+                case 'uri':
+                    output.value = encodeURI(text);
+                    break;
+                case 'decode':
+                    output.value = decodeURIComponent(text);
+                    break;
+            }
+            status.textContent = '✓ Done';
+            setTimeout(() => status.textContent = '', 2000);
+        } catch (e) {
+            output.value = '';
+            status.textContent = '✗ ' + e.message;
+        }
+    }
+
+    document.getElementById('url-run').addEventListener('click', run);
+    input.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') run(); });
+
+    document.getElementById('url-swap').addEventListener('click', () => {
+        const tmp = input.value;
+        input.value = output.value;
+        output.value = tmp;
     });
 
-    document.getElementById('url-decode').addEventListener('click', () => {
-        try {
-            output.value = decodeURIComponent(input.value || output.value);
-        } catch (e) {
-            output.value = 'Invalid encoded URL string.';
-        }
+    document.getElementById('url-clear').addEventListener('click', () => {
+        input.value = '';
+        output.value = '';
+        status.textContent = '';
     });
 
     document.getElementById('url-copy').addEventListener('click', async () => {
+        if (!output.value) return;
         try {
             await navigator.clipboard.writeText(output.value);
-        } catch (e) {
-            // ignore
+            status.textContent = '✓ Copied';
+        } catch {
+            output.select();
+            document.execCommand('copy');
+            status.textContent = '✓ Copied';
         }
+        setTimeout(() => status.textContent = '', 2000);
     });
+})();
 </script>
 @endsection
-
-

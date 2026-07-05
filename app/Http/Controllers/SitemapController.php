@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Http\Response;
+
+class SitemapController extends Controller
+{
+    public function index(): Response
+    {
+        $urls = [
+            ['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'weekly'],
+            ['loc' => route('about'), 'priority' => '0.8', 'changefreq' => 'monthly'],
+            ['loc' => route('contact'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+            ['loc' => route('privacy'), 'priority' => '0.5', 'changefreq' => 'yearly'],
+            ['loc' => route('terms'), 'priority' => '0.5', 'changefreq' => 'yearly'],
+            ['loc' => route('cookies'), 'priority' => '0.4', 'changefreq' => 'yearly'],
+            ['loc' => route('disclaimer'), 'priority' => '0.4', 'changefreq' => 'yearly'],
+            ['loc' => route('faq'), 'priority' => '0.7', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.index'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['loc' => route('blog.index'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['loc' => route('tools.json'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.url'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.color'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.unit'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.password'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.base64'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.hash'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.case'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.wordcount'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.timestamp'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.uuid'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.jwt'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('tools.qr'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+        ];
+
+        foreach (Post::published()->get() as $post) {
+            $urls[] = [
+                'loc' => route('blog.show', $post->slug),
+                'priority' => '0.8',
+                'changefreq' => 'monthly',
+                'lastmod' => optional($post->updated_at)->toAtomString(),
+            ];
+        }
+
+        $xml = view('sitemap', compact('urls'))->render();
+
+        return response($xml, 200)->header('Content-Type', 'application/xml');
+    }
+}

@@ -10,8 +10,8 @@
             </h1>
             <p class="hero-subtitle">
                 Transform your workflow with our comprehensive suite of free online tools. Format and validate JSON data, 
-                encode and decode URLs, convert colors between HEX and RGB, perform unit conversions, and generate 
-                cryptographically secure passwords – all in one powerful, privacy-focused platform at <strong>ToolsFree.org</strong>.
+                encode and decode URLs, convert colors between HEX, RGB, and HSL, perform unit conversions across seven categories,
+                generate secure passwords, encode Base64, create SHA hashes, count words, generate QR codes and UUIDs, decode JWTs, and convert timestamps – all in one privacy-focused platform at <strong>ToolsFree.org</strong>.
             </p>
 
             <div class="hero-badges">
@@ -22,8 +22,8 @@
             </div>
 
             <div class="hero-cta">
-                <a href="{{ route('tools.json') }}" class="button-primary">
-                    Start Using Tools Now
+                <a href="{{ route('tools.index') }}" class="button-primary">
+                    Browse All Tools
                     <span>→</span>
                 </a>
                 <a href="{{ route('blog.index') }}" class="button-secondary">
@@ -38,7 +38,7 @@
             <div class="tools-grid">
                 <article class="tool-card">
                     <h3>JSON Formatter & Validator</h3>
-                    <p>Professional JSON beautifier and validator with syntax highlighting. Instantly format, minify, and validate JSON data with detailed error messages for API development and debugging.</p>
+                    <p>Professional JSON beautifier and validator with detailed error messages. Instantly format, minify, and validate JSON data for API development and debugging.</p>
                     <div class="tool-meta">
                         <span>🔧 API Development</span>
                         <a href="{{ route('tools.json') }}" class="tool-link">Try JSON Tool ↗</a>
@@ -54,7 +54,7 @@
                 </article>
                 <article class="tool-card">
                     <h3>HEX to RGB Color Converter</h3>
-                    <p>Convert between HEX, RGB, and HSL color formats instantly. Perfect for designers, developers, and anyone working with web colors and CSS styling.</p>
+                    <p>Convert between HEX, RGB, and HSL color formats with live preview and one-click copy. Perfect for designers, developers, and anyone working with web colors and CSS styling.</p>
                     <div class="tool-meta">
                         <span>🎨 Design & UI/UX</span>
                         <a href="{{ route('tools.color') }}" class="tool-link">Convert Colors ↗</a>
@@ -62,7 +62,7 @@
                 </article>
                 <article class="tool-card">
                     <h3>Universal Unit Converter</h3>
-                    <p>Convert between length, weight, volume, temperature, area, speed, and more. Supports metric, imperial, and specialized units for professional use.</p>
+                    <p>Convert length, weight, volume, temperature, area, speed, and data storage units. Supports metric, imperial, and specialized units including pixels at 96 DPI.</p>
                     <div class="tool-meta">
                         <span>📏 Measurements</span>
                         <a href="{{ route('tools.unit') }}" class="tool-link">Convert Units ↗</a>
@@ -74,6 +74,70 @@
                     <div class="tool-meta">
                         <span>🔒 Security</span>
                         <a href="{{ route('tools.password') }}" class="tool-link">Generate Password ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>Base64 Encoder & Decoder</h3>
+                    <p>Encode and decode Base64 text and files with UTF-8 and URL-safe support. Perfect for API auth headers, data URIs, and debugging encoded payloads.</p>
+                    <div class="tool-meta">
+                        <span>🔧 Encoding</span>
+                        <a href="{{ route('tools.base64') }}" class="tool-link">Open Base64 Tool ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>SHA Hash Generator</h3>
+                    <p>Generate SHA-256, SHA-384, and SHA-512 checksums from any text using the Web Crypto API. Ideal for integrity checks and developer workflows.</p>
+                    <div class="tool-meta">
+                        <span>🔐 Cryptography</span>
+                        <a href="{{ route('tools.hash') }}" class="tool-link">Generate Hash ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>Text Case Converter</h3>
+                    <p>Convert between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more. Essential for refactoring code and naming variables.</p>
+                    <div class="tool-meta">
+                        <span>✏️ Text Tools</span>
+                        <a href="{{ route('tools.case') }}" class="tool-link">Convert Case ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>Word &amp; Character Counter</h3>
+                    <p>Count words, characters, sentences, and paragraphs with live reading time. Perfect for bloggers, SEO writers, students, and content marketers.</p>
+                    <div class="tool-meta">
+                        <span>📝 Writing</span>
+                        <a href="{{ route('tools.wordcount') }}" class="tool-link">Count Words ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>QR Code Generator</h3>
+                    <p>Create scannable QR codes for URLs, WiFi networks, email, and phone numbers. Download high-quality PNG images — no watermark, no signup.</p>
+                    <div class="tool-meta">
+                        <span>📱 Marketing</span>
+                        <a href="{{ route('tools.qr') }}" class="tool-link">Create QR Code ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>Unix Timestamp Converter</h3>
+                    <p>Convert epoch timestamps to readable dates and back. Supports seconds, milliseconds, UTC and local time — essential for API and log debugging.</p>
+                    <div class="tool-meta">
+                        <span>🕐 Date &amp; Time</span>
+                        <a href="{{ route('tools.timestamp') }}" class="tool-link">Convert Time ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>UUID Generator</h3>
+                    <p>Generate random UUID v4 identifiers for databases, APIs, and distributed systems. Bulk generate up to 100 GUIDs with cryptographic randomness.</p>
+                    <div class="tool-meta">
+                        <span>🆔 Generators</span>
+                        <a href="{{ route('tools.uuid') }}" class="tool-link">Generate UUID ↗</a>
+                    </div>
+                </article>
+                <article class="tool-card">
+                    <h3>JWT Decoder</h3>
+                    <p>Decode JSON Web Tokens to inspect headers, payloads, expiration, and claims. Client-side only — safe for debugging OAuth and API authentication tokens.</p>
+                    <div class="tool-meta">
+                        <span>🔐 Security</span>
+                        <a href="{{ route('tools.jwt') }}" class="tool-link">Decode JWT ↗</a>
                     </div>
                 </article>
             </div>
@@ -359,7 +423,7 @@
                             <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
                                 {{ $post->excerpt }}
                             </p>
-                        @endif>
+                        @endif
                     </article>
                 @endforeach
             </div>
@@ -449,12 +513,10 @@
                     What units does the unit converter support?
                 </h3>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
-                    Our comprehensive unit converter supports hundreds of units across multiple categories: Length 
-                    (meters, feet, inches, kilometers, miles, yards, centimeters, millimeters), Weight/Mass 
-                    (kilograms, pounds, ounces, grams, tons), Volume (liters, gallons, milliliters, cups, pints, 
-                    quarts), Temperature (Celsius, Fahrenheit, Kelvin), Area (square meters, square feet, acres, 
-                    hectares), Speed (mph, km/h, m/s), Pressure, Energy, Power, Time, and Data Storage (bytes, KB, 
-                    MB, GB, TB). Perfect for international professionals, engineers, and students.
+                    Our unit converter supports seven categories: Length (mm, cm, m, km, inches, feet, yards, miles, nautical miles, pixels), 
+                    Weight (grams, kg, oz, lbs, stone, metric tons), Volume (mL, liters, US gallons, cups, pints, quarts), 
+                    Temperature (Celsius, Fahrenheit, Kelvin), Area (sq meters, sq feet, acres, hectares), 
+                    Speed (m/s, km/h, mph), and Data Storage (bytes, KB, MB, GB, TB). Perfect for developers, engineers, and international professionals.
                 </p>
             </div>
 
@@ -515,8 +577,8 @@
                 <a href="{{ route('tools.password') }}" class="button-primary">
                     Generate Password →
                 </a>
-                <a href="{{ route('tools.color') }}" class="button-secondary" style="color: var(--text-primary); border-color: rgba(102, 126, 234, 0.5);">
-                    Convert Colors →
+                <a href="{{ route('tools.base64') }}" class="button-secondary" style="color: var(--text-primary); border-color: rgba(102, 126, 234, 0.5);">
+                    Base64 Encoder →
                 </a>
             </div>
         </div>

@@ -58,9 +58,7 @@
                             🎨 Design Tools
                         </h3>
                         <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
-                            HEX to RGB color converter with visual preview for designers and frontend developers. 
-                            Instantly convert between color formats, copy values with one click, and maintain 
-                            consistency across your design systems and brand guidelines.
+                            HEX to RGB and HSL color converter with visual preview, live swatches, and one-click copy for designers and frontend developers.
                         </p>
                     </div>
                 </div>
@@ -70,9 +68,8 @@
                             📏 Conversion Tools
                         </h3>
                         <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
-                            Comprehensive unit converter supporting length, weight, volume, temperature, area, 
-                            speed, and more. Perfect for international professionals, engineers, scientists, and 
-                            anyone working with different measurement systems.
+                            Unit converter supporting length, weight, volume, temperature, area, speed, and data storage.
+                            Convert between metric and imperial units including pixels at 96 DPI for web design workflows.
                         </p>
                     </div>
                 </div>
