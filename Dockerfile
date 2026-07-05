@@ -37,6 +37,7 @@ COPY docker/php/php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY docker/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-custom.conf
 
 # Copy Nginx configuration
+COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 
 # Create supervisor configuration

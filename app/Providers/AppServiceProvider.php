@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use App\Models\Post;
+use App\Observers\PostObserver;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Post::observe(PostObserver::class);
+
         // Force HTTPS URLs in production (important for Dokploy/nginx reverse proxy)
         if (config('app.env') === 'production' || request()->header('X-Forwarded-Proto') === 'https') {
             URL::forceScheme('https');

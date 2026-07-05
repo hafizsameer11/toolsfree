@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Support\PageCache;
 use App\Support\Seo;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::published()
-            ->latest('published_at')
-            ->get();
+        $posts = PageCache::remember('blog.index.posts', PageCache::TTL_PAGE, function () {
+            return Post::published()
+                ->latest('published_at')
+                ->get(['id', 'title', 'slug', 'excerpt', 'featured_image', 'published_at']);
+        });
 
         $meta = Seo::merge([
             'title' => 'Developer Tips & Guides Blog - ToolsFree.org',
@@ -33,7 +36,9 @@ class BlogController extends Controller
 
     public function show(string $slug)
     {
-        $post = Post::published()->where('slug', $slug)->firstOrFail();
+        $post = PageCache::remember('blog.post.'.$slug, PageCache::TTL_PAGE, function () use ($slug) {
+            return Post::published()->where('slug', $slug)->firstOrFail();
+        });
 
         $meta = Seo::merge([
             'title' => $post->meta_title ?: $post->title . ' - ToolsFree.org Blog',

@@ -29,7 +29,17 @@ touch /var/www/html/storage/framework/views/.gitkeep 2>/dev/null || true
 touch /var/www/html/storage/framework/cache/.gitkeep 2>/dev/null || true
 touch /var/www/html/storage/logs/.gitkeep 2>/dev/null || true
 
-echo "Storage setup complete. Starting services..."
+echo "Storage setup complete."
+
+# Warm Laravel caches in production (nginx serves static files; PHP handles pages)
+if [ "${APP_ENV:-local}" = "production" ]; then
+    echo "Optimizing Laravel for production..."
+    php artisan config:cache 2>/dev/null || true
+    php artisan route:cache 2>/dev/null || true
+    php artisan view:cache 2>/dev/null || true
+fi
+
+echo "Starting services..."
 
 # Execute the main command (supervisord)
 exec "$@"

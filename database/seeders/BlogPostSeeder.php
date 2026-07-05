@@ -64,5 +64,8 @@ class BlogPostSeeder extends Seeder
         }
 
         $this->command->info('Seeded '.count($articles).' blog articles.');
+
+        \App\Support\PageCache::bump();
+        $this->command->info('Page cache cleared.');
     }
 }

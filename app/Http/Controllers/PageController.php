@@ -9,10 +9,12 @@ class PageController extends Controller
 {
     public function home()
     {
-        $latestPosts = Post::published()
-            ->latest('published_at')
-            ->take(3)
-            ->get();
+        $latestPosts = PageCache::remember('home.latest_posts', PageCache::TTL_PAGE, function () {
+            return Post::published()
+                ->latest('published_at')
+                ->take(3)
+                ->get(['id', 'title', 'slug', 'excerpt', 'featured_image', 'published_at']);
+        });
 
         $meta = Seo::merge([
             'title' => 'ToolsFree.org - Free Online JSON, URL, Color, Unit & Password Tools',
