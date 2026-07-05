@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Support\PageCache;
 use App\Support\Seo;
 
 class PageController extends Controller
