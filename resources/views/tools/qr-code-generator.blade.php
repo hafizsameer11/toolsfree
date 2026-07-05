@@ -86,9 +86,16 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script src="{{ asset('js/qrcode.min.js') }}?v=1"></script>
 <script>
 (function() {
+    if (typeof QRCode === 'undefined') {
+        console.error('QRCode library failed to load');
+        document.getElementById('qr-canvas-wrap').innerHTML =
+            '<p class="text-danger">QR library failed to load. Please refresh the page.</p>';
+        return;
+    }
+
     const typeEl = document.getElementById('qr-type');
     const wrap = document.getElementById('qr-canvas-wrap');
     const downloadBtn = document.getElementById('qr-download');
@@ -125,7 +132,11 @@
         const content = getContent();
         wrap.innerHTML = '';
         QRCode.toCanvas(content, { width: size, margin: 2, color: { dark: '#000000', light: '#ffffff' } }, (err, canvas) => {
-            if (err) { wrap.innerHTML = '<p class="text-danger">Error generating QR code</p>'; return; }
+            if (err) {
+                wrap.innerHTML = '<p class="text-danger">Error generating QR code</p>';
+                downloadBtn.disabled = true;
+                return;
+            }
             wrap.appendChild(canvas);
             dataUrl = canvas.toDataURL('image/png');
             downloadBtn.disabled = false;
