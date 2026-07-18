@@ -17,7 +17,7 @@ class BlogController extends Controller
         });
 
         $meta = Seo::merge([
-            'title' => 'Developer Tips & Guides Blog - ToolsFree.org',
+            'title' => 'Developer Tips & Guides Blog | ToolsFree.org',
             'description' => 'Read practical guides on JSON formatting, URL encoding, password security, color conversion, unit conversion, web development best practices and more.',
             'keywords' => 'developer blog,api tutorials,json guides,security tips,web development,toolsfree blog',
             'canonical' => route('blog.index'),
@@ -46,7 +46,7 @@ class BlogController extends Controller
             'keywords' => $post->meta_keywords ?: 'developer blog,toolsfree',
             'type' => 'article',
             'canonical' => route('blog.show', $post->slug),
-            'image' => $post->featured_image ? asset($post->featured_image) : asset('images/og-default.svg'),
+            'image' => $post->featured_image ? asset($post->featured_image) : asset('images/og-default.png'),
         ]);
 
         $jsonLd = Seo::articleJsonLd(
@@ -54,7 +54,8 @@ class BlogController extends Controller
             $meta['description'],
             route('blog.show', $post->slug),
             optional($post->published_at)->toAtomString(),
-            $post->featured_image ? asset($post->featured_image) : null
+            $post->featured_image ? asset($post->featured_image) : asset('images/og-default.png'),
+            optional($post->updated_at)->toAtomString()
         );
 
         return view('blog.show', compact('post', 'meta', 'jsonLd'));

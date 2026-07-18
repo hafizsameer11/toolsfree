@@ -18,6 +18,10 @@ Route::get('/login', function () {
     return redirect()->route('admin.login');
 })->name('login');
 
+// Keep sitemap outside HTML page-cache middleware
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::permanentRedirect('/terms-of-service', '/terms-and-conditions')->name('terms.service');
+
 Route::middleware(['cache.public:3600'])->group(function () {
     Route::get('/', [PageController::class, 'home'])->name('home');
 
@@ -25,12 +29,10 @@ Route::middleware(['cache.public:3600'])->group(function () {
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
     Route::get('/terms-and-conditions', [PageController::class, 'terms'])->name('terms');
-    Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms.service');
     Route::get('/cookie-policy', [PageController::class, 'cookies'])->name('cookies');
     Route::get('/disclaimer', [PageController::class, 'disclaimer'])->name('disclaimer');
     Route::get('/faq', [PageController::class, 'faq'])->name('faq');
     Route::get('/tools', [PageController::class, 'tools'])->name('tools.index');
-    Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
     Route::get('/json-formatter', [ToolController::class, 'jsonFormatter'])->name('tools.json');
     Route::get('/url-encoder-decoder', [ToolController::class, 'urlEncoder'])->name('tools.url');

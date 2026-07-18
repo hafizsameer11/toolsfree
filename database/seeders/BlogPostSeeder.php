@@ -27,9 +27,7 @@ class BlogPostSeeder extends Seeder
             return;
         }
 
-        $slugs = array_column($articles, 'slug');
-        Post::whereNotIn('slug', $slugs)->delete();
-
+        // Only upsert articles from the JSON pack — never delete existing DB posts.
         foreach ($articles as $data) {
             if (! empty($data['body_file'])) {
                 $bodyPath = database_path('seeders/data/articles/'.$data['body_file']);

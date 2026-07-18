@@ -52,7 +52,7 @@ class CachePublicResponse
             return false;
         }
 
-        if ($request->is('admin', 'admin/*', 'login')) {
+        if ($request->is('admin', 'admin/*', 'login', 'sitemap.xml')) {
             return false;
         }
 

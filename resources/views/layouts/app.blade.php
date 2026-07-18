@@ -9,7 +9,7 @@
     <title>{{ $meta['title'] ?? config('app.name') }}</title>
     <meta name="description" content="{{ $meta['description'] ?? '' }}">
     <meta name="keywords" content="{{ $meta['keywords'] ?? '' }}">
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="{{ $meta['robots'] ?? (request()->is('admin*') ? 'noindex,nofollow' : 'index,follow') }}">
     <meta name="author" content="ToolsFree.org">
     <link rel="canonical" href="{{ $meta['canonical'] ?? url()->current() }}">
 
@@ -18,16 +18,20 @@
     <meta property="og:title" content="{{ $meta['og_title'] ?? $meta['title'] ?? config('app.name') }}">
     <meta property="og:description" content="{{ $meta['og_description'] ?? $meta['description'] ?? '' }}">
     <meta property="og:url" content="{{ $meta['canonical'] ?? url()->current() }}">
-    <meta property="og:image" content="{{ $meta['image'] ?? asset('images/og-default.svg') }}">
+    <meta property="og:image" content="{{ $meta['image'] ?? asset('images/og-default.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $meta['og_title'] ?? $meta['title'] ?? config('app.name') }}">
     <meta name="twitter:description" content="{{ $meta['og_description'] ?? $meta['description'] ?? '' }}">
-    <meta name="twitter:image" content="{{ $meta['image'] ?? asset('images/og-default.svg') }}">
+    <meta name="twitter:image" content="{{ $meta['image'] ?? asset('images/og-default.png') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32.png') }}">
+    <link rel="shortcut icon" href="{{ url('/favicon.ico') }}">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700&display=swap" rel="stylesheet" />

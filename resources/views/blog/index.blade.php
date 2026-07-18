@@ -5,7 +5,7 @@
         <header class="blog-page-hero card">
             <h1 class="blog-page-title">ToolsFree.org Blog</h1>
             <p class="blog-page-subtitle">
-                30+ in-depth guides on JSON, URLs, colors, units, passwords, Base64, JWTs, UUIDs, QR codes, hashing, and developer workflows.
+                In-depth guides on JSON, URLs, colors, units, passwords, Base64, JWTs, UUIDs, QR codes, hashing, and developer workflows.
             </p>
         </header>
 
